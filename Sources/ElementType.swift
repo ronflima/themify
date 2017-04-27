@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// Type of the element to be themefied
 ///
 /// - label: UILabel

@@ -11,9 +11,8 @@ import Foundation
 /// Describes the type of attribute being themed
 ///
 /// - backgroundColor: Background color
-/// - foregroundColor: Foreground color
-/// - fontColor: font color
-enum Attribute : Hashable {
+/// - foregroundColor: Foreground color. Depending on the element being customized, can be a text color or tint color
+enum Attribute: Hashable {
     case backgroundColor(UIColor)
     case foregroundColor(UIColor)
     
