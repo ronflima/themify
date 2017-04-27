@@ -10,28 +10,62 @@ import Foundation
 
 class Element : Hashable {
     typealias AttributeApplier = (UIAppearance, Attribute) -> ()
-    fileprivate let elementClassMap: [ElementType : (class: AnyClass, applier: AttributeApplier)] = [
-        .label: (class: UILabel.self, applier: { (proxy, attribute) in
-            let labelProxy = proxy as! UILabel
-            switch attribute {
-            case .backgroundColor(let color):
-                labelProxy.backgroundColor = color
-            case .foregroundColor(let color):
-                labelProxy.textColor = color
-            }
+    fileprivate static let elementClassMap: [ElementType : (class: AnyClass, applier: AttributeApplier)] = [
+        .label: (
+            class: UILabel.self,
+            applier: { (proxy, attribute) in
+                let viewProxy = proxy as! UILabel
+                switch attribute {
+                case .backgroundColor(let color):
+                    viewProxy.backgroundColor = color
+                case .foregroundColor(let color):
+                    viewProxy.textColor = color
+                }
         }),
-        .navigationBar: (class: UINavigationBar.self, applier: { (proxy, attribute) in
-            let navProxy = proxy as! UINavigationBar
-            switch attribute {
-            case .backgroundColor(let color):
-                navProxy.backgroundColor = color
-            case .foregroundColor(let color):
-                navProxy.tintColor = color
-            }
+        .navigationBar: (
+            class: UINavigationBar.self,
+            applier: { (proxy, attribute) in
+                let viewProxy = proxy as! UINavigationBar
+                switch attribute {
+                case .backgroundColor(let color):
+                    viewProxy.backgroundColor = color
+                case .foregroundColor(let color):
+                    viewProxy.tintColor = color
+                }
         }),
-        .toolBar: (class: UIToolbar.self, applier: { (proxy, attribute) in }),
-        .tabBar         : (class: UITabBar.self         , applier: { (proxy, attribute) in }),
-        .tableViewCell  : (class: UITableViewCell.self  , applier: { (proxy, attribute) in })
+        .toolBar: (
+            class: UIToolbar.self,
+            applier: { (proxy, attribute) in
+                let viewProxy = proxy as! UIToolbar
+                switch attribute {
+                case .backgroundColor(let color):
+                    viewProxy.backgroundColor = color
+                case .foregroundColor(let color):
+                    viewProxy.tintColor = color
+                }
+        }),
+        .tabBar: (
+            class: UITabBar.self,
+            applier: { (proxy, attribute) in
+                let viewProxy = proxy as! UITabBar
+                switch attribute {
+                case .backgroundColor(let color):
+                    viewProxy.backgroundColor = color
+                case .foregroundColor(let color):
+                    viewProxy.tintColor = color
+                }
+        }),
+        .tableViewCell: (
+            class: UITableViewCell.self,
+            applier: { (proxy, attribute) in
+                let viewProxy = proxy as! UITableViewCell
+                switch attribute {
+                case .backgroundColor(let color):
+                    viewProxy.backgroundColor = color
+                case .foregroundColor(let color):
+                    viewProxy.tintColor = color
+                }
+        })
     ]
     var attributes = Set<Attribute>()
     var container  : Element?
@@ -42,11 +76,11 @@ class Element : Hashable {
     }
     
     var elementClass: AnyClass? {
-        return elementClassMap[elementType]?.class
+        return Element.elementClassMap[elementType]?.class
     }
     
     var attributeApplier: AttributeApplier? {
-        return elementClassMap[elementType]?.applier
+        return Element.elementClassMap[elementType]?.applier
     }
     
     var proxy: UIAppearance? {
