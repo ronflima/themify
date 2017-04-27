@@ -17,6 +17,25 @@ Themify try to centralize it by using definitions stored in files or hard-coded
 in your code. So, you can change the entire look of your app from a central
 point, without having to edit any interface files anymore.
 
+# Theme file layout
+
+The theme file is a simple plist. However, this plist must have the following format:
+
+- Array (top-level)
+  - Dictionary
+    - name: String - Theme name
+    - elements: Array (element definitions)
+      - Dictionary (element definition)
+        - element: String - Name of the element (i.e., _UILabel_)
+        - attribute: String - Attribute to customize. (the key is the attribute, and the value, what is being customized
+
+See the file _TestTheme.plist_ for a practical example.
+
+# In-memory layout of raw themes
+
+The in-memory layout follows exactly the file layout in order to describe a
+theme in memory.
+
 # License
 
 This library is released under [MIT License](LICENSE).

@@ -21,22 +21,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-// Created: 2017-04-25 by Ronaldo Faria Lima
-// This file purpose: Type of an element
+// Created: 2017-04-27 by Ronaldo Faria Lima
+// This file purpose: Errors thrown by this library
 
-import Foundation
-
-/// Type of the element to be themefied
-///
-/// - label: UILabel
-/// - navigationBar: UINavigationBar
-/// - toolBar: UIToolBar
-/// - tabBar: UITabBar
-/// - tableViewCell: UITableViewCell
-enum ElementType: String {
-    case label          = "UILABEL"
-    case navigationBar  = "UINAVIGATIONBAR"
-    case toolBar        = "UITOOLBAR"
-    case tabBar         = "UITABBAR"
-    case tableViewCell  = "UITABLEVIEWCELL"
+enum ThemifyError: Error {
+    case cantLoadThemeFile(themeFileURL: URL)
+    case themeNotFound(themeName: String)
+    case invalidThemeConfiguration
 }
+

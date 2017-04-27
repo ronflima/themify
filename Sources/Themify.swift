@@ -30,7 +30,10 @@ import Foundation
 /// and spread it through your code as a simple plain swift class.
 public final class Themify {
     /// Singleton instance of themify.
-    fileprivate class var instance: Themify!
+    fileprivate static var instance: Themify!
+    
+    /// Set of loaded themes
+    fileprivate var themes = Set<Theme>()
     
     /// Shared instance of Themify. You can use it as a singleton. This is only a convenience.
     public var shared: Themify {
@@ -42,4 +45,23 @@ public final class Themify {
     
     /// Default initializer. So far, does nothing.
     public init() {}
+    
+    public func loadThemes(from fileURL: URL) throws {
+        guard let themeArray = NSArray(contentsOf: fileURL) as? Array<Any> else {
+           throw ThemifyError.cantLoadThemeFile(themeFileURL: fileURL)
+        }
+        do {
+            themes = try Parser().parse(rawThemes: themeArray)
+        } catch {
+            // TODO: Error handling
+        }
+    }
+    
+    public func applyTheme(themeName: String) throws {
+        if let theme = (themes.filter { $0.name == themeName }).first {
+            theme.apply()
+        } else {
+            throw ThemifyError.themeNotFound(themeName: themeName)
+        }
+    }
 }

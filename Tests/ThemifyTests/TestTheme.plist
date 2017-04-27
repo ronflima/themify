@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Twilight</string>
+		<key>elements</key>
+		<array>
+			<dict>
+				<key>element</key>
+				<string>UINavigationBar</string>
+				<key>backgroundColor</key>
+				<string>#000051</string>
+				<key>foregroundColor</key>
+				<string>#FFFFFF</string>
+			</dict>
+			<dict>
+				<key>element</key>
+				<string>UILabel</string>
+				<key>container</key>
+				<string>UINavigationBar</string>
+				<key>foregroundColor</key>
+				<string>#FFFFFF</string>
+			</dict>
+			<dict>
+				<key>element</key>
+				<string>UITabBar</string>
+				<key>backgroundColor</key>
+				<string>#534bae</string>
+				<key>foregroundColor</key>
+				<string>#ffffff</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Light Blue</string>
+		<key>elements</key>
+		<array>
+			<dict>
+				<key>element</key>
+				<string>UINavigationBar</string>
+				<key>backgroundColor</key>
+				<string>#26418f</string>
+				<key>foregroundColor</key>
+				<string>#FFFFFF</string>
+			</dict>
+			<dict>
+				<key>element</key>
+				<string>UILabel</string>
+				<key>container</key>
+				<string>UINavigationBar</string>
+				<key>foregroundColor</key>
+				<string>#FFFFFF</string>
+			</dict>
+			<dict>
+				<key>element</key>
+				<string>UITabBar</string>
+				<key>backgroundColor</key>
+				<string>#8e99f3</string>
+				<key>foregroundColor</key>
+				<string>#ffffff</string>
+			</dict>
+		</array>
+	</dict>
+</array>
+</plist>
