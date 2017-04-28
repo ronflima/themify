@@ -43,20 +43,33 @@ public final class Themify {
         return Themify.instance
     }
     
+    /// A list with all loaded theme names
+    public var themeNames: [String] {
+        return themes.map({ (theme) -> String in
+            return theme.name
+        })
+    }
+    
     /// Default initializer. So far, does nothing.
     public init() {}
     
+    /// Loads all themes written to a plist file.
+    ///
+    /// - Parameter fileURL: File URL for a plist containing theme definitions
+    /// - Throws:
+    ///     - ThemifyError.cantLoadThemeFile if could not read the input file
+    ///     - ThemifyError.invalidThemeConfiguration if parsing of one theme was not successful
     public func loadThemes(from fileURL: URL) throws {
         guard let themeArray = NSArray(contentsOf: fileURL) as? Array<Any> else {
            throw ThemifyError.cantLoadThemeFile(themeFileURL: fileURL)
         }
-        do {
-            themes = try Parser().parse(rawThemes: themeArray)
-        } catch {
-            // TODO: Error handling
-        }
+        themes = try Parser().parse(rawThemes: themeArray)
     }
     
+    /// Applies a theme based on its name
+    ///
+    /// - Parameter themeName: Theme name to apply
+    /// - Throws: ThemifyError.themeNotFound if theme name was not found at all.
     public func applyTheme(themeName: String) throws {
         if let theme = (themes.filter { $0.name == themeName }).first {
             theme.apply()

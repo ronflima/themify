@@ -43,6 +43,15 @@ enum Attribute: Hashable {
         }
     }
     
+    static func convertAttribute(rawAttribute: String, rawValue: String) -> Attribute? {
+        return nil
+    }
+    
+    static func isValid(rawAttribute: String) -> Bool {
+        let validAttributes: [String] = ["BACKGROUNDCOLOR", "FOREGROUNDCOLOR"]
+        return validAttributes.contains(rawAttribute.uppercased())
+    }
+    
     static func == (a: Attribute, b: Attribute) -> Bool {
         return a.hashValue == b.hashValue
     }

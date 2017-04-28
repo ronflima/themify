@@ -57,11 +57,28 @@ struct Parser {
                     throw ThemifyError.invalidThemeConfiguration
                 }
                 let element = Element(elementType: elementType)
-                
+                element.attributes = try parseAttributes(rawAttributes: rawElement)
+                elements.insert(element)
             } else {
                 throw ThemifyError.invalidThemeConfiguration
             }
         }
         return elements
+    }
+    
+    fileprivate func parseAttributes(rawAttributes: Dictionary<String, String>) throws -> Set<Attribute> {
+        var attributes = Set<Attribute>()
+        for (rawAttribute, rawValue) in rawAttributes {
+            let attribute: Attribute! = Attribute.convertAttribute(rawAttribute: rawAttribute, rawValue: rawValue)
+            if attribute == nil {
+                continue
+            }
+            attributes.insert(attribute)
+        }
+        if attributes.count == 0 {
+            // There must be at least one single attribute. Otherwise, this theme is not good.
+            throw ThemifyError.invalidThemeConfiguration
+        }
+        return attributes
     }
 }

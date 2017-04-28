@@ -28,12 +28,11 @@ import Foundation
 
 /// Abstraction for an element to be themified.
 class Element {
-    
     /// List of attributes to be themified for this element
     var attributes = Set<Attribute>()
     
     /// Element container, if any.
-    var container  : Element?
+    var container: Element?
     
     /// Type of this element
     let elementType: ElementType
@@ -43,6 +42,13 @@ class Element {
     /// - Parameter elementType: Element type to identify this element inside a theme
     init (elementType: ElementType) {
         self.elementType = elementType
+    }
+    
+    /// Adds an attribute to this element
+    ///
+    /// - Parameter attribute: Attribute to add
+    func addAttribute(attribute: Attribute) {
+        attributes.insert(attribute)
     }
 }
 
@@ -61,7 +67,6 @@ extension Element: Hashable {
 
 // MARK: - Class map implementation
 extension Element {
-    
     /// Attribute applier. It is a simple block
     typealias AttributeApplier = (UIAppearance, Attribute) -> ()
     
@@ -149,13 +154,6 @@ extension Element {
     /// - Returns: Appearance proxy
     func proxy(within containers: [UIAppearanceContainer.Type]) -> UIAppearance? {
         return (elementClass as? UIAppearance.Type)?.appearance(whenContainedInInstancesOf: containers)
-    }
-    
-    /// Adds an attribute to this element
-    ///
-    /// - Parameter attribute: Attribute to add
-    func addAttribute(attribute: Attribute) {
-        attributes.insert(attribute)
     }
     
     /// Applies attributes to appearance proxies
