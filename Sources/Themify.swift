@@ -36,7 +36,7 @@ public final class Themify {
     fileprivate var themes = Set<Theme>()
     
     /// Shared instance of Themify. You can use it as a singleton. This is only a convenience.
-    public var shared: Themify {
+    public static var shared: Themify {
         if Themify.instance == nil {
             Themify.instance = Themify()
         }
@@ -48,6 +48,11 @@ public final class Themify {
         return themes.map({ (theme) -> String in
             return theme.name
         })
+    }
+    
+    /// Contains the number of loaded themes
+    public var count: Int {
+        return themes.count
     }
     
     /// Default initializer. So far, does nothing.

@@ -30,10 +30,36 @@ import Foundation
 ///
 /// - backgroundColor: Background color
 /// - foregroundColor: Foreground color. Depending on the element being customized, can be a text color or tint color
-enum Attribute: Hashable {
+enum Attribute {
     case backgroundColor(UIColor)
     case foregroundColor(UIColor)
     
+    /// Converts a raw attribute and value to its internal representations.
+    ///
+    /// - Parameters:
+    ///   - rawAttribute: Attribute in raw format
+    ///   - rawValue: Attribute's value in raw format
+    /// - Returns: The newly created attribute on success or nil otherwise.
+    static func convertAttribute(rawAttribute: String, rawValue: String) -> Attribute? {
+        let validAttributes: [String] = ["BACKGROUNDCOLOR", "FOREGROUNDCOLOR"]
+        if !validAttributes.contains(rawAttribute.uppercased()) {
+            return nil
+        }
+        var attribute: Attribute?
+        switch rawAttribute.uppercased() {
+        case validAttributes[0]:    // backgroundColor
+            attribute = .backgroundColor(UIColor(hex: rawValue, alpha: 1.0))
+        case validAttributes[1]:    // foregroundColor
+            attribute = .foregroundColor(UIColor(hex: rawValue, alpha: 1.0))
+        default:
+            break
+        }
+        return attribute
+    }
+}
+
+// MARK: - Hashable Conformance
+extension Attribute: Hashable {
     var hashValue: Int {
         switch self {
         case .backgroundColor(let color):
@@ -41,15 +67,6 @@ enum Attribute: Hashable {
         case .foregroundColor(let color):
             return color.hashValue + 0x2
         }
-    }
-    
-    static func convertAttribute(rawAttribute: String, rawValue: String) -> Attribute? {
-        return nil
-    }
-    
-    static func isValid(rawAttribute: String) -> Bool {
-        let validAttributes: [String] = ["BACKGROUNDCOLOR", "FOREGROUNDCOLOR"]
-        return validAttributes.contains(rawAttribute.uppercased())
     }
     
     static func == (a: Attribute, b: Attribute) -> Bool {

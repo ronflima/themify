@@ -13,11 +13,13 @@
 		D17E67791EAF7ACE008FA5C0 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E67781EAF7ACE008FA5C0 /* Element.swift */; };
 		D17E677D1EAF7B5B008FA5C0 /* ElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E677C1EAF7B5B008FA5C0 /* ElementType.swift */; };
 		D17E67831EAF85A4008FA5C0 /* Themify.h in Headers */ = {isa = PBXBuildFile; fileRef = D17E67701EAF7A0D008FA5C0 /* Themify.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D1B5A1301EB2280100831CB5 /* ThemifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B5A12F1EB2280100831CB5 /* ThemifyTests.swift */; };
 		D1B5A1321EB2280100831CB5 /* Themify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17E676E1EAF7A0D008FA5C0 /* Themify.framework */; };
-		D1B5A1391EB2283600831CB5 /* TestTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1B5A1381EB2283600831CB5 /* TestTheme.plist */; };
 		D1B5A13A1EB22EA000831CB5 /* Themify.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Themify.swift /* Themify.swift */; };
 		D1B5A13C1EB231CA00831CB5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B5A13B1EB231CA00831CB5 /* Errors.swift */; };
+		D1CEDDC51EB3D1D800D5AF34 /* AppearanceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CEDDC41EB3D1D800D5AF34 /* AppearanceProxy.swift */; };
+		D1CEDDC81EB3D54300D5AF34 /* TestTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1CEDDC61EB3D53D00D5AF34 /* TestTheme.plist */; };
+		D1CEDDCB1EB3D56300D5AF34 /* TestMainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CEDDCA1EB3D56300D5AF34 /* TestMainInterface.swift */; };
+		D1CEDDCD1EB3DBAC00D5AF34 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CEDDCC1EB3DBAC00D5AF34 /* Color+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,13 +42,15 @@
 		D17E67781EAF7ACE008FA5C0 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		D17E677C1EAF7B5B008FA5C0 /* ElementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementType.swift; sourceTree = "<group>"; };
 		D1B5A12D1EB2280100831CB5 /* ThemifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThemifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1B5A12F1EB2280100831CB5 /* ThemifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemifyTests.swift; sourceTree = "<group>"; };
 		D1B5A1311EB2280100831CB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D1B5A1381EB2283600831CB5 /* TestTheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestTheme.plist; sourceTree = "<group>"; };
 		D1B5A13B1EB231CA00831CB5 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		D1CEDDC41EB3D1D800D5AF34 /* AppearanceProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxy.swift; sourceTree = "<group>"; };
+		D1CEDDC61EB3D53D00D5AF34 /* TestTheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestTheme.plist; sourceTree = "<group>"; };
+		D1CEDDC91EB3D56200D5AF34 /* ThemifyTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ThemifyTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		D1CEDDCA1EB3D56300D5AF34 /* TestMainInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMainInterface.swift; sourceTree = "<group>"; };
+		D1CEDDCC1EB3DBAC00D5AF34 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Themify.swift /* Themify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themify.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/ThemifyTests/ThemifyTests.swift /* ThemifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemifyTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,15 +72,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D1B5A12E1EB2280100831CB5 /* ThemifyTests */ = {
-			isa = PBXGroup;
-			children = (
-				D1B5A12F1EB2280100831CB5 /* ThemifyTests.swift */,
-				D1B5A1311EB2280100831CB5 /* Info.plist */,
-			);
-			path = ThemifyTests;
-			sourceTree = "<group>";
-		};
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +87,6 @@
 				D17E67711EAF7A0D008FA5C0 /* Info.plist */,
 				"_____Sources_" /* Sources */,
 				"_______Tests_" /* Tests */,
-				D1B5A12E1EB2280100831CB5 /* ThemifyTests */,
 				"____Products_" /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,27 +119,22 @@
 				D17E677C1EAF7B5B008FA5C0 /* ElementType.swift */,
 				D1B5A13B1EB231CA00831CB5 /* Errors.swift */,
 				D17346031EB2970800E92F80 /* Parser.swift */,
+				D1CEDDC41EB3D1D800D5AF34 /* AppearanceProxy.swift */,
+				D1CEDDCC1EB3DBAC00D5AF34 /* Color+Extension.swift */,
 			);
 			name = Themify;
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		"_______Group_ThemifyTests" /* ThemifyTests */ = {
-			isa = PBXGroup;
-			children = (
-				__PBXFileRef_Tests/ThemifyTests/ThemifyTests.swift /* ThemifyTests.swift */,
-				D1B5A1381EB2283600831CB5 /* TestTheme.plist */,
-			);
-			name = ThemifyTests;
-			path = Tests/ThemifyTests;
-			sourceTree = "<group>";
-		};
 		"_______Tests_" /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				"_______Group_ThemifyTests" /* ThemifyTests */,
+				D1CEDDC61EB3D53D00D5AF34 /* TestTheme.plist */,
+				D1B5A1311EB2280100831CB5 /* Info.plist */,
+				D1CEDDCA1EB3D56300D5AF34 /* TestMainInterface.swift */,
+				D1CEDDC91EB3D56200D5AF34 /* ThemifyTests-Bridging-Header.h */,
 			);
-			name = Tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +205,7 @@
 					D1B5A12C1EB2280100831CB5 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = GR2X4M499N;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -250,7 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1B5A1391EB2283600831CB5 /* TestTheme.plist in Resources */,
+				D1CEDDC81EB3D54300D5AF34 /* TestTheme.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +252,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D17E677D1EAF7B5B008FA5C0 /* ElementType.swift in Sources */,
+				D1CEDDCD1EB3DBAC00D5AF34 /* Color+Extension.swift in Sources */,
 				D1B5A13A1EB22EA000831CB5 /* Themify.swift in Sources */,
+				D1CEDDC51EB3D1D800D5AF34 /* AppearanceProxy.swift in Sources */,
 				D17E67791EAF7ACE008FA5C0 /* Element.swift in Sources */,
 				D11607231EB0289500881A89 /* Attribute.swift in Sources */,
 				D1B5A13C1EB231CA00831CB5 /* Errors.swift in Sources */,
@@ -275,7 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1B5A1301EB2280100831CB5 /* ThemifyTests.swift in Sources */,
+				D1CEDDCB1EB3D56300D5AF34 /* TestMainInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,13 +449,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = ThemifyTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nineteenapps.ThemifyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/ThemifyTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -504,11 +497,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = ThemifyTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nineteenapps.ThemifyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/ThemifyTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;

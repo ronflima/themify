@@ -33,7 +33,7 @@ public class Theme {
     let name: String
     
     /// Customized elements on this theme
-    var elements = Set<Element>()
+    var elements: Set<Element>!
     
     /// Initializer
     ///

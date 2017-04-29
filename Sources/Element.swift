@@ -29,7 +29,7 @@ import Foundation
 /// Abstraction for an element to be themified.
 class Element {
     /// List of attributes to be themified for this element
-    var attributes = Set<Attribute>()
+    var attributes: Set<Attribute>!
     
     /// Element container, if any.
     var container: Element?
@@ -42,13 +42,6 @@ class Element {
     /// - Parameter elementType: Element type to identify this element inside a theme
     init (elementType: ElementType) {
         self.elementType = elementType
-    }
-    
-    /// Adds an attribute to this element
-    ///
-    /// - Parameter attribute: Attribute to add
-    func addAttribute(attribute: Attribute) {
-        attributes.insert(attribute)
     }
 }
 
@@ -68,14 +61,14 @@ extension Element: Hashable {
 // MARK: - Class map implementation
 extension Element {
     /// Attribute applier. It is a simple block
-    typealias AttributeApplier = (UIAppearance, Attribute) -> ()
+    typealias AttributeApplier = (UIAppearanceContainer.Type?, Attribute) -> ()
     
     /// Element/Class mapping, with appliers
-    fileprivate static let elementClassMap: [ElementType : (class: AnyClass, applier: AttributeApplier)] = [
+    fileprivate static let elementClassMap: [ElementType : (class: UIAppearance.Type, applier: AttributeApplier)] = [
         .label: (
             class: UILabel.self,
-            applier: { (proxy, attribute) in
-                let viewProxy = proxy as! UILabel
+            applier: { (container, attribute) in
+                let viewProxy = AppearanceProxy<UILabel>(container: container).appearance()
                 switch attribute {
                 case .backgroundColor(let color):
                     viewProxy.backgroundColor = color
@@ -85,8 +78,8 @@ extension Element {
         }),
         .navigationBar: (
             class: UINavigationBar.self,
-            applier: { (proxy, attribute) in
-                let viewProxy = proxy as! UINavigationBar
+            applier: { (container, attribute) in
+                let viewProxy = AppearanceProxy<UINavigationBar>(container: container).appearance()
                 switch attribute {
                 case .backgroundColor(let color):
                     viewProxy.backgroundColor = color
@@ -96,8 +89,8 @@ extension Element {
         }),
         .toolBar: (
             class: UIToolbar.self,
-            applier: { (proxy, attribute) in
-                let viewProxy = proxy as! UIToolbar
+            applier: { (container, attribute) in
+                let viewProxy = AppearanceProxy<UIToolbar>(container: container).appearance()
                 switch attribute {
                 case .backgroundColor(let color):
                     viewProxy.backgroundColor = color
@@ -107,8 +100,8 @@ extension Element {
         }),
         .tabBar: (
             class: UITabBar.self,
-            applier: { (proxy, attribute) in
-                let viewProxy = proxy as! UITabBar
+            applier: { (container, attribute) in
+                let viewProxy = AppearanceProxy<UITabBar>(container: container).appearance()
                 switch attribute {
                 case .backgroundColor(let color):
                     viewProxy.backgroundColor = color
@@ -118,8 +111,8 @@ extension Element {
         }),
         .tableViewCell: (
             class: UITableViewCell.self,
-            applier: { (proxy, attribute) in
-                let viewProxy = proxy as! UITableViewCell
+            applier: { (container, attribute) in
+                let viewProxy = AppearanceProxy<UITableViewCell>(container: container).appearance()
                 switch attribute {
                 case .backgroundColor(let color):
                     viewProxy.backgroundColor = color
@@ -132,9 +125,8 @@ extension Element {
 
 // MARK: - Functionality Implementation
 extension Element {
-
     /// Class related to this element
-    var elementClass: AnyClass? {
+    var elementClass: UIAppearance.Type? {
         return Element.elementClassMap[elementType]?.class
     }
     
@@ -143,33 +135,10 @@ extension Element {
         return Element.elementClassMap[elementType]?.applier
     }
     
-    /// Default appearance proxy related to this element
-    var proxy: UIAppearance? {
-        return (elementClass as? UIAppearance.Type)?.appearance()
-    }
-    
-    /// Appearance proxy when this element is contained within another element
-    ///
-    /// - Parameter containers: list of containers
-    /// - Returns: Appearance proxy
-    func proxy(within containers: [UIAppearanceContainer.Type]) -> UIAppearance? {
-        return (elementClass as? UIAppearance.Type)?.appearance(whenContainedInInstancesOf: containers)
-    }
-    
     /// Applies attributes to appearance proxies
     func applyAttributes() {
-        var appearanceProxy: UIAppearance!
-        if let container = container, let typeClass = container.elementClass {
-            appearanceProxy = self.proxy(within: [typeClass as! UIAppearanceContainer.Type])
-        } else {
-            appearanceProxy = self.proxy
-        }
-        if appearanceProxy == nil {
-            // Failed to get a proxy? Do nothing. Probably, we have a configuration issue
-            return
-        }
         for attribute in attributes {
-            attributeApplier?(appearanceProxy, attribute)
+            attributeApplier?(container?.elementClass as? UIAppearanceContainer.Type, attribute)
         }
     }
 }
