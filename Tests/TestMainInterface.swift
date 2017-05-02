@@ -51,4 +51,17 @@ class TestMainInterface: XCTestCase {
             XCTFail("Failed to apply theme")
         }
     }
+    
+    func testThemeNames() {
+        guard let themeFileURL = testBundle.url(forResource: "TestTheme", withExtension: "plist") else {
+            XCTFail("Unable to load theme test file")
+            return
+        }
+        do {
+            try Themify.shared.loadThemes(from: themeFileURL)
+        } catch {
+            XCTFail("Could not load themes from test file")
+        }
+        XCTAssertEqual(Themify.shared.themeNames.count, 2, "Wrong theme names")
+    }
 }
