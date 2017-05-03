@@ -13,9 +13,9 @@ Creating color themes for an app is a boring task. You need to set color
 properties over and over again, using storyboards or xib files. For large apps,
 changing your color theme is hard and a no-brainer task.
 
-Themify try to centralize it by using definitions stored in files or hard-coded
-in your code. So, you can change the entire look of your app from a central
-point, without having to edit any interface files anymore.
+Themify try to centralize it by using definitions stored in plist files. So, you
+can change the entire look of your app from a central point, without having to
+edit any interface files anymore.
 
 # Theme file layout
 
@@ -31,10 +31,70 @@ The theme file is a simple plist. However, this plist must have the following fo
 
 See the file _TestTheme.plist_ for a practical example.
 
-# In-memory layout of raw themes
+# Usage
 
-The in-memory layout follows exactly the file layout in order to describe a
-theme in memory.
+Usage is quite simple. Themes are identified by meaningful names in plist
+file. Here is a plist example:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Default</string>
+		<key>elements</key>
+		<array>
+			<dict>
+				<key>element</key>
+				<string>UITabBar</string>
+				<key>foregroundColor</key>
+				<string>#FF8000</string>
+			</dict>
+			<dict>
+				<key>element</key>
+				<string>UINavigationBar</string>
+				<key>foregroundColor</key>
+				<string>#FF8000</string>
+			</dict>
+		</array>
+	</dict>
+</array>
+</plist>
+```
+
+Each plist contains several themes. That's why it holds an array as top-level
+element. So, for this example, here is how to load this theme, in swift:
+
+```swift
+import Themify
+
+if let themeURL = Bundle.main.url(forResource: "theme", withExtension: "plist") {
+    do {
+        try Themify.shared.loadThemes(from: themeURL)
+        try Themify.shared.applyTheme(themeName: "Default")
+    } catch {
+        // Catch exception here.
+    }
+}
+```
+
+Instead of using the singleton Themify, you can instantiate your own:
+
+```swift
+import Themify
+
+if let themeURL = Bundle.main.url(forResource: "theme", withExtension: "plist") {
+    let themify = Themify()
+    do {
+        try themify.loadThemes(from: themeURL)
+        try themify.applyTheme(themeName: "Default")
+    } catch {
+        // Catch exception here.
+    }
+}
+```
 
 # License
 
