@@ -43,9 +43,9 @@ public class Theme {
     }
     
     /// Applies the theme to the app by using appearance proxies.
-    public func apply() {
+    public func apply() throws {
         for element in elements {
-            element.applyAttributes()
+            try element.applyAttributes()
         }
     }
     

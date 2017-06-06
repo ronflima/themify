@@ -50,15 +50,15 @@ struct Parser {
         var elements = Set<Element>()
         for rawElement in rawElements {
             if let rawElement = rawElement as? Dictionary<String, String> {
-                guard let rawElementType = rawElement["element"]?.uppercased() else {
+                guard let rawElementType = rawElement["element"] else {
                     throw ThemifyError.invalidThemeConfiguration
                 }
-                guard let elementType = ElementType(rawValue: rawElementType) else {
+                if let element = Element(className: rawElementType) {
+                    element.attributes = try parseAttributes(rawAttributes: rawElement)
+                    elements.insert(element)
+                } else {
                     throw ThemifyError.invalidThemeConfiguration
                 }
-                let element = Element(elementType: elementType)
-                element.attributes = try parseAttributes(rawAttributes: rawElement)
-                elements.insert(element)
             } else {
                 throw ThemifyError.invalidThemeConfiguration
             }
@@ -68,8 +68,8 @@ struct Parser {
     
     fileprivate func parseAttributes(rawAttributes: Dictionary<String, String>) throws -> Set<Attribute> {
         var attributes = Set<Attribute>()
-        for (rawAttribute, rawValue) in rawAttributes {
-            let attribute: Attribute! = Attribute.convertAttribute(rawAttribute: rawAttribute, rawValue: rawValue)
+        for (name, value) in rawAttributes {
+            let attribute: Attribute! = Attribute(name: name, value: value)
             if attribute == nil {
                 continue
             }

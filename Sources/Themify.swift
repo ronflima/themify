@@ -77,7 +77,7 @@ public final class Themify {
     /// - Throws: ThemifyError.themeNotFound if theme name was not found at all.
     public func applyTheme(themeName: String) throws {
         if let theme = (themes.filter { $0.name == themeName }).first {
-            theme.apply()
+            try theme.apply()
         } else {
             throw ThemifyError.themeNotFound(themeName: themeName)
         }
