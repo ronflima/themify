@@ -22,12 +22,16 @@ edit any interface files anymore.
 
 # Principles
 
-Themify does not rely no method swizzling like other libraries do. It uses the
+Themify does not rely on method swizzling like other libraries do. It uses the
 default way to customize apps by using appearance proxies. This library get the
-class name from your configuration, locate it on the run-time anda then do its
-magic.
+class name from your configuration, locate it on the run-time and do its magic.
 
-It is designed to be small, fast and easy to use. 
+It is designed to be small, fast and easy to use.
+
+Your application don´t have access to the theme structure. It is maintained
+internally. _Themify_ main class is just a _theme manager_, loading and applying
+it when requested. Since a theme is a shared state of any application, _Themify_
+class was implemented as a singleton.
 
 # Theme file layout
 
@@ -86,22 +90,6 @@ if let themeURL = Bundle.main.url(forResource: "theme", withExtension: "plist") 
     do {
         try Themify.shared.loadThemes(from: themeURL)
         try Themify.shared.applyTheme(themeName: "Default")
-    } catch {
-        // Catch exception here.
-    }
-}
-```
-
-Instead of using the singleton Themify, you can instantiate your own:
-
-```swift
-import Themify
-
-if let themeURL = Bundle.main.url(forResource: "theme", withExtension: "plist") {
-    let themify = Themify()
-    do {
-        try themify.loadThemes(from: themeURL)
-        try themify.applyTheme(themeName: "Default")
     } catch {
         // Catch exception here.
     }
