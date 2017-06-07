@@ -29,19 +29,11 @@ import Foundation
 /// Themify main interface. This library is implemented as a façade and singleton. But, you can create you own instance 
 /// and spread it through your code as a simple plain swift class.
 public final class Themify {
-    /// Singleton instance of themify.
-    fileprivate static var instance: Themify!
-    
     /// Set of loaded themes
     fileprivate var themes = Set<Theme>()
     
     /// Shared instance of Themify. You can use it as a singleton. This is only a convenience.
-    public static var shared: Themify {
-        if Themify.instance == nil {
-            Themify.instance = Themify()
-        }
-        return Themify.instance
-    }
+    public static let shared = Themify()
     
     /// A list with all loaded theme names
     public var themeNames: [String] {
@@ -55,8 +47,8 @@ public final class Themify {
         return themes.count
     }
     
-    /// Default initializer. So far, does nothing.
-    public init() {}
+    /// Default initializer. So far, does nothing. Module internal for singleton pattern implementation.
+    init() {}
     
     /// Loads all themes written to a plist file.
     ///
