@@ -71,7 +71,7 @@ extension Element {
                 // Container is not taken into account. Skip it.
                 continue
             }
-            if (element as AnyClass).instancesRespond(to: attribute.selector) {
+            if (element as AnyClass).instancesRespond(to: attribute.selector!) {
                 proxy.perform(attribute.selector, with: attribute.value)
             } else {
                 throw ThemifyError.invalidProxyConfiguration(className: String(describing: element), attributeName: attribute.name)
