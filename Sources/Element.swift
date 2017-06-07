@@ -37,7 +37,7 @@ class Element {
     
     init? (className: String) {
         element = NSObject.swiftClassFromString(className: className) as? UIAppearance.Type
-        guard element != nil else {
+        if element == nil {
             return nil
         }
     }
