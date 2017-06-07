@@ -63,6 +63,17 @@ public final class Themify {
         themes = try Parser().parse(rawThemes: themeArray)
     }
     
+    /// Convenience method. Loads a theme file from a given POSIX path
+    ///
+    /// - Parameter path: Full qualified path to themes file
+    /// - Throws:
+    ///     - ThemifyError.cantLoadThemeFile if could not read the input file
+    ///     - ThemifyError.invalidThemeConfiguration if parsing of one theme was not successful
+    public func loadThemes(from path: String) throws {
+        let fileURL = URL(fileURLWithPath: path)
+        try loadThemes(from: fileURL)
+    }
+    
     /// Applies a theme based on its name
     ///
     /// - Parameter themeName: Theme name to apply
