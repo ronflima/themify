@@ -31,9 +31,14 @@ import Foundation
 /// - seealso: https://medium.com/@maximbilan/ios-objective-c-project-nsclassfromstring-method-for-swift-classes-dbadb721723
 extension NSObject {
     class func swiftClassFromString(className: String) -> AnyClass? {
+        #if DEBUG
+            let bundle = Bundle(for: NSObject.self)
+        #else
+            let bundle = Bundle.main
+        #endif
         var foundClass: AnyClass? = NSClassFromString(className)
         if foundClass == nil {
-            if let bundleName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
+            if let bundleName = bundle.infoDictionary?["CFBundleName"] as? String {
                 let appName = bundleName.replacingOccurrences(of: " ", with: "_")
                 foundClass = NSClassFromString("\(appName).\(className)")
             }
