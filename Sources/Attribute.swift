@@ -25,48 +25,66 @@
 // This file purpose: Attribute declarations
 
 import Foundation
+import UIKit
 
-/// Describes the type of attribute being themed
-///
-/// - backgroundColor: Background color
-/// - foregroundColor: Foreground color. Depending on the element being customized, can be a text color or tint color
-enum Attribute {
-    case backgroundColor(UIColor)
-    case foregroundColor(UIColor)
+enum AttributeType {
+    case color
+    case image
+    case container
+    case unknown
     
-    /// Converts a raw attribute and value to its internal representations.
-    ///
-    /// - Parameters:
-    ///   - rawAttribute: Attribute in raw format
-    ///   - rawValue: Attribute's value in raw format
-    /// - Returns: The newly created attribute on success or nil otherwise.
-    static func convertAttribute(rawAttribute: String, rawValue: String) -> Attribute? {
-        let validAttributes: [String] = ["BACKGROUNDCOLOR", "FOREGROUNDCOLOR"]
-        if !validAttributes.contains(rawAttribute.uppercased()) {
+    init(name: String) {
+        let normalizedName = name.uppercased()
+        if normalizedName.contains("COLOR") {
+            self = .color
+        } else if normalizedName.contains("IMAGE") {
+            self = .image
+        } else if normalizedName == "CONTAINER" {
+            self = .container
+        } else {
+            self = .unknown
+        }
+    }
+}
+
+class Attribute {
+    let selector: Selector?
+    let value: Any!
+    let name: String
+    let type: AttributeType
+    
+    init? (name: String, value: String) {
+        var attrValue: Any? = nil
+        self.name = name
+        self.type = AttributeType(name: name)
+        switch self.type {
+        case .color:
+            attrValue = UIColor(hex: value, alpha: 1.0)
+        case .image:
+            let url = URL(fileURLWithPath: value)
+            if let data = try? Data(contentsOf: url) {
+                attrValue = UIImage(data: data)
+            }
+        case .container:
+            attrValue = NSObject.swiftClassFromString(className: value)
+            break
+        case .unknown:
             return nil
         }
-        var attribute: Attribute?
-        switch rawAttribute.uppercased() {
-        case validAttributes[0]:    // backgroundColor
-            attribute = .backgroundColor(UIColor(hex: rawValue, alpha: 1.0))
-        case validAttributes[1]:    // foregroundColor
-            attribute = .foregroundColor(UIColor(hex: rawValue, alpha: 1.0))
-        default:
-            break
+        var selector: Selector? = nil
+        if type != .container {
+            let selName = "set\(String(name.characters.prefix(1)).capitalized)\(String(name.characters.dropFirst())):"
+            selector = NSSelectorFromString(selName)
         }
-        return attribute
+        self.selector = selector
+        self.value = attrValue
     }
 }
 
 // MARK: - Hashable Conformance
 extension Attribute: Hashable {
     var hashValue: Int {
-        switch self {
-        case .backgroundColor(let color):
-            return color.hashValue + 0x1
-        case .foregroundColor(let color):
-            return color.hashValue + 0x2
-        }
+        return name.hashValue
     }
     
     static func == (a: Attribute, b: Attribute) -> Bool {

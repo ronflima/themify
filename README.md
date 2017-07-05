@@ -13,9 +13,25 @@ Creating color themes for an app is a boring task. You need to set color
 properties over and over again, using storyboards or xib files. For large apps,
 changing your color theme is hard and a no-brainer task.
 
+If you decide to use appearance proxies, you find yourself writing the same
+boiler-plate code over and over again.
+
 Themify try to centralize it by using definitions stored in plist files. So, you
 can change the entire look of your app from a central point, without having to
 edit any interface files anymore.
+
+# Principles
+
+Themify does not rely on method swizzling like other libraries do. It uses the
+default way to customize apps by using appearance proxies. This library get the
+class name from your configuration, locate it on the run-time and do its magic.
+
+It is designed to be small, fast and easy to use.
+
+Your application don´t have access to the theme structure. It is maintained
+internally. _Themify_ main class is just a _theme manager_, loading and applying
+it when requested. Since a theme is a shared state of any application, _Themify_
+class was implemented as a singleton.
 
 # Theme file layout
 
@@ -49,13 +65,13 @@ file. Here is a plist example:
 			<dict>
 				<key>element</key>
 				<string>UITabBar</string>
-				<key>foregroundColor</key>
+				<key>tintColor</key>
 				<string>#FF8000</string>
 			</dict>
 			<dict>
 				<key>element</key>
 				<string>UINavigationBar</string>
-				<key>foregroundColor</key>
+				<key>tintColor</key>
 				<string>#FF8000</string>
 			</dict>
 		</array>
@@ -74,22 +90,6 @@ if let themeURL = Bundle.main.url(forResource: "theme", withExtension: "plist") 
     do {
         try Themify.shared.loadThemes(from: themeURL)
         try Themify.shared.applyTheme(themeName: "Default")
-    } catch {
-        // Catch exception here.
-    }
-}
-```
-
-Instead of using the singleton Themify, you can instantiate your own:
-
-```swift
-import Themify
-
-if let themeURL = Bundle.main.url(forResource: "theme", withExtension: "plist") {
-    let themify = Themify()
-    do {
-        try themify.loadThemes(from: themeURL)
-        try themify.applyTheme(themeName: "Default")
     } catch {
         // Catch exception here.
     }

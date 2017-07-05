@@ -21,22 +21,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-// Created: 2017-04-25 by Ronaldo Faria Lima
-// This file purpose: Type of an element
+// Created: 2017-06-02 by Ronaldo Faria Lima
+// This file purpose: internal extension for NSObject
 
 import Foundation
 
-/// Type of the element to be themefied
-///
-/// - label: UILabel
-/// - navigationBar: UINavigationBar
-/// - toolBar: UIToolBar
-/// - tabBar: UITabBar
-/// - tableViewCell: UITableViewCell
-enum ElementType: String {
-    case label          = "UILABEL"
-    case navigationBar  = "UINAVIGATIONBAR"
-    case toolBar        = "UITOOLBAR"
-    case tabBar         = "UITABBAR"
-    case tableViewCell  = "UITABLEVIEWCELL"
+/// Adds a class function to NSObject in order to get a class type for a given string representing the class name.
+/// This is based on Maxim Bilan extension, updated to Swift 3. 
+/// - seealso: https://medium.com/@maximbilan/ios-objective-c-project-nsclassfromstring-method-for-swift-classes-dbadb721723
+extension NSObject {
+    class func swiftClassFromString(className: String) -> AnyClass? {
+        #if DEBUG
+            let bundle = Bundle(for: NSObject.self)
+        #else
+            let bundle = Bundle.main
+        #endif
+        var foundClass: AnyClass? = NSClassFromString(className)
+        if foundClass == nil {
+            if let bundleName = bundle.infoDictionary?["CFBundleName"] as? String {
+                let appName = bundleName.replacingOccurrences(of: " ", with: "_")
+                foundClass = NSClassFromString("\(appName).\(className)")
+            }
+        }
+        return foundClass;
+    }
 }

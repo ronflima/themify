@@ -15,7 +15,7 @@ class TestMainInterface: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        testBundle = Bundle(for: self.classForCoder)
+        testBundle = Bundle(for: type(of :self))
     }
     
     override func tearDown() {
@@ -29,6 +29,19 @@ class TestMainInterface: XCTestCase {
         }
         do {
             try Themify.shared.loadThemes(from: themeFileURL)
+        } catch {
+            XCTFail("Could not load themes from test file")
+        }
+        XCTAssertEqual(Themify.shared.count, 2, "Wrong number of loaded themes")
+    }
+    
+    func testThemeLoadFromPath() {
+        guard let themeFilePath = testBundle.path(forResource: "TestTheme", ofType: "plist") else {
+            XCTFail("Unable to load theme test file")
+            return
+        }
+        do {
+            try Themify.shared.loadThemes(from: themeFilePath)
         } catch {
             XCTFail("Could not load themes from test file")
         }

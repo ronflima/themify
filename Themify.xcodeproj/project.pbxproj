@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		D11607231EB0289500881A89 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11607221EB0289500881A89 /* Attribute.swift */; };
 		D17346041EB2970800E92F80 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17346031EB2970800E92F80 /* Parser.swift */; };
+		D177FA0E1EE23221000205AF /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D177FA0D1EE23221000205AF /* NSObject+Extension.swift */; };
 		D17E67771EAF7A95008FA5C0 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E67761EAF7A95008FA5C0 /* Theme.swift */; };
 		D17E67791EAF7ACE008FA5C0 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E67781EAF7ACE008FA5C0 /* Element.swift */; };
-		D17E677D1EAF7B5B008FA5C0 /* ElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E677C1EAF7B5B008FA5C0 /* ElementType.swift */; };
 		D17E67831EAF85A4008FA5C0 /* Themify.h in Headers */ = {isa = PBXBuildFile; fileRef = D17E67701EAF7A0D008FA5C0 /* Themify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1B5A1321EB2280100831CB5 /* Themify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17E676E1EAF7A0D008FA5C0 /* Themify.framework */; };
 		D1B5A13A1EB22EA000831CB5 /* Themify.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Themify.swift /* Themify.swift */; };
@@ -35,12 +35,12 @@
 /* Begin PBXFileReference section */
 		D11607221EB0289500881A89 /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
 		D17346031EB2970800E92F80 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		D177FA0D1EE23221000205AF /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		D17E676E1EAF7A0D008FA5C0 /* Themify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Themify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D17E67701EAF7A0D008FA5C0 /* Themify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Themify.h; sourceTree = "<group>"; };
 		D17E67711EAF7A0D008FA5C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D17E67761EAF7A95008FA5C0 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		D17E67781EAF7ACE008FA5C0 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
-		D17E677C1EAF7B5B008FA5C0 /* ElementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementType.swift; sourceTree = "<group>"; };
 		D1B5A12D1EB2280100831CB5 /* ThemifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThemifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B5A1311EB2280100831CB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1B5A13B1EB231CA00831CB5 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -116,11 +116,11 @@
 				__PBXFileRef_Sources/Themify.swift /* Themify.swift */,
 				D17E67761EAF7A95008FA5C0 /* Theme.swift */,
 				D17E67781EAF7ACE008FA5C0 /* Element.swift */,
-				D17E677C1EAF7B5B008FA5C0 /* ElementType.swift */,
 				D1B5A13B1EB231CA00831CB5 /* Errors.swift */,
 				D17346031EB2970800E92F80 /* Parser.swift */,
 				D1CEDDC41EB3D1D800D5AF34 /* AppearanceProxy.swift */,
 				D1CEDDCC1EB3DBAC00D5AF34 /* Color+Extension.swift */,
+				D177FA0D1EE23221000205AF /* NSObject+Extension.swift */,
 			);
 			name = Themify;
 			path = Sources;
@@ -251,11 +251,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D17E677D1EAF7B5B008FA5C0 /* ElementType.swift in Sources */,
 				D1CEDDCD1EB3DBAC00D5AF34 /* Color+Extension.swift in Sources */,
 				D1B5A13A1EB22EA000831CB5 /* Themify.swift in Sources */,
 				D1CEDDC51EB3D1D800D5AF34 /* AppearanceProxy.swift in Sources */,
 				D17E67791EAF7ACE008FA5C0 /* Element.swift in Sources */,
+				D177FA0E1EE23221000205AF /* NSObject+Extension.swift in Sources */,
 				D11607231EB0289500881A89 /* Attribute.swift in Sources */,
 				D1B5A13C1EB231CA00831CB5 /* Errors.swift in Sources */,
 				D17E67771EAF7A95008FA5C0 /* Theme.swift in Sources */,
@@ -307,7 +307,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GR2X4M499N;
@@ -373,7 +373,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GR2X4M499N;

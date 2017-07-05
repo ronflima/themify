@@ -12,7 +12,7 @@
 				<string>UINavigationBar</string>
 				<key>backgroundColor</key>
 				<string>#000051</string>
-				<key>foregroundColor</key>
+				<key>tintColor</key>
 				<string>#FFFFFF</string>
 			</dict>
 			<dict>
@@ -20,7 +20,7 @@
 				<string>UILabel</string>
 				<key>container</key>
 				<string>UINavigationBar</string>
-				<key>foregroundColor</key>
+				<key>tintColor</key>
 				<string>#FFFFFF</string>
 			</dict>
 			<dict>
@@ -28,7 +28,7 @@
 				<string>UITabBar</string>
 				<key>backgroundColor</key>
 				<string>#534bae</string>
-				<key>foregroundColor</key>
+				<key>tintColor</key>
 				<string>#ffffff</string>
 			</dict>
 		</array>
@@ -43,7 +43,7 @@
 				<string>UINavigationBar</string>
 				<key>backgroundColor</key>
 				<string>#26418f</string>
-				<key>foregroundColor</key>
+				<key>tintColor</key>
 				<string>#FFFFFF</string>
 			</dict>
 			<dict>
@@ -51,7 +51,7 @@
 				<string>UILabel</string>
 				<key>container</key>
 				<string>UINavigationBar</string>
-				<key>foregroundColor</key>
+				<key>color</key>
 				<string>#FFFFFF</string>
 			</dict>
 			<dict>
@@ -59,7 +59,7 @@
 				<string>UITabBar</string>
 				<key>backgroundColor</key>
 				<string>#8e99f3</string>
-				<key>foregroundColor</key>
+				<key>tintColor</key>
 				<string>#ffffff</string>
 			</dict>
 		</array>

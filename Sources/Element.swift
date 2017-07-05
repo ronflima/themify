@@ -25,120 +25,57 @@
 // This file purpose: Theme element declarations/implementations
 
 import Foundation
+import UIKit
 
 /// Abstraction for an element to be themified.
 class Element {
     /// List of attributes to be themified for this element
     var attributes: Set<Attribute>!
     
-    /// Element container, if any.
-    var container: Element?
+    /// This element proxy
+    let element: UIAppearance.Type!
     
-    /// Type of this element
-    let elementType: ElementType
-    
-    /// Default initializer
-    ///
-    /// - Parameter elementType: Element type to identify this element inside a theme
-    init (elementType: ElementType) {
-        self.elementType = elementType
+    init? (className: String) {
+        element = NSObject.swiftClassFromString(className: className) as? UIAppearance.Type
+        if element == nil {
+            return nil
+        }
     }
 }
 
 // MARK: - Hashable protocol compliance
 extension Element: Hashable {
     var hashValue: Int {
-        if container != nil {
-            return elementType.hashValue + container!.hashValue
-        }
-        return elementType.hashValue
+        return element.appearance().hash
     }
     static func == (a: Element, b: Element) -> Bool {
-        return a.elementType == b.elementType
+        return a.element == b.element
     }
-}
-
-// MARK: - Class map implementation
-extension Element {
-    /// Attribute applier. It is a simple block
-    typealias AttributeApplier = (UIAppearanceContainer.Type?, Attribute) -> ()
-    
-    /// Element/Class mapping, with appliers
-    fileprivate static let elementClassMap: [ElementType : (class: UIAppearance.Type, applier: AttributeApplier)] = [
-        .label: (
-            class: UILabel.self,
-            applier: { (container, attribute) in
-                let viewProxy = AppearanceProxy<UILabel>(container: container).appearance()
-                switch attribute {
-                case .backgroundColor(let color):
-                    viewProxy.backgroundColor = color
-                case .foregroundColor(let color):
-                    viewProxy.textColor = color
-                }
-        }),
-        .navigationBar: (
-            class: UINavigationBar.self,
-            applier: { (container, attribute) in
-                let viewProxy = AppearanceProxy<UINavigationBar>(container: container).appearance()
-                switch attribute {
-                case .backgroundColor(let color):
-                    viewProxy.backgroundColor = color
-                case .foregroundColor(let color):
-                    viewProxy.tintColor = color
-                }
-        }),
-        .toolBar: (
-            class: UIToolbar.self,
-            applier: { (container, attribute) in
-                let viewProxy = AppearanceProxy<UIToolbar>(container: container).appearance()
-                switch attribute {
-                case .backgroundColor(let color):
-                    viewProxy.backgroundColor = color
-                case .foregroundColor(let color):
-                    viewProxy.tintColor = color
-                }
-        }),
-        .tabBar: (
-            class: UITabBar.self,
-            applier: { (container, attribute) in
-                let viewProxy = AppearanceProxy<UITabBar>(container: container).appearance()
-                switch attribute {
-                case .backgroundColor(let color):
-                    viewProxy.backgroundColor = color
-                case .foregroundColor(let color):
-                    viewProxy.tintColor = color
-                }
-        }),
-        .tableViewCell: (
-            class: UITableViewCell.self,
-            applier: { (container, attribute) in
-                let viewProxy = AppearanceProxy<UITableViewCell>(container: container).appearance()
-                switch attribute {
-                case .backgroundColor(let color):
-                    viewProxy.backgroundColor = color
-                case .foregroundColor(let color):
-                    viewProxy.tintColor = color
-                }
-        })
-    ]
 }
 
 // MARK: - Functionality Implementation
 extension Element {
-    /// Class related to this element
-    var elementClass: UIAppearance.Type? {
-        return Element.elementClassMap[elementType]?.class
+    var proxy: UIAppearance {
+        if let container = (attributes.filter { $0.type == .container }).first {
+            return element.appearance(whenContainedInInstancesOf: [container.value as! UIAppearanceContainer.Type])
+        }
+        return element.appearance()
     }
-    
-    /// Attribute applier routine
-    var attributeApplier: AttributeApplier? {
-        return Element.elementClassMap[elementType]?.applier
-    }
-    
     /// Applies attributes to appearance proxies
-    func applyAttributes() {
+    ///
+    /// - Throws: ThemifyError.invalidProxyConfiguration
+    func applyAttributes() throws {
+        let proxy = element.appearance()
         for attribute in attributes {
-            attributeApplier?(container?.elementClass as? UIAppearanceContainer.Type, attribute)
+            if attribute.type == .container {
+                // Container is not taken into account. Skip it.
+                continue
+            }
+            if (element as AnyClass).instancesRespond(to: attribute.selector!) {
+                proxy.perform(attribute.selector, with: attribute.value)
+            } else {
+                throw ThemifyError.invalidProxyConfiguration(className: String(describing: element), attributeName: attribute.name)
+            }
         }
     }
 }

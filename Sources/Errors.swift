@@ -28,5 +28,6 @@ enum ThemifyError: Error {
     case cantLoadThemeFile(themeFileURL: URL)
     case themeNotFound(themeName: String)
     case invalidThemeConfiguration
+    case invalidProxyConfiguration(className: String, attributeName: String)
 }
 
