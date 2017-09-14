@@ -84,7 +84,11 @@ class Attribute {
                     guard let stringKey = NSAttributedStringKey.fromString(representation: key) else {
                         return nil
                     }
+                    if let attribute = Attribute(name: key, value: strAttr) {
+                        parsedValues[stringKey] = attribute
+                    }
                 }
+                attrValue = parsedValues
             }
             break
         case .unknown:
