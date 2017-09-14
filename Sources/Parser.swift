@@ -49,16 +49,12 @@ struct Parser {
     fileprivate func parseElements(rawElements: Array<Dictionary<String, Any>>) throws -> Set<Element> {
         var elements = Set<Element>()
         for rawElement in rawElements {
-            if let rawElement = rawElement as? Dictionary<String, String> {
-                guard let rawElementType = rawElement["element"] else {
-                    throw ThemifyError.invalidThemeConfiguration
-                }
-                if let element = Element(className: rawElementType) {
-                    element.attributes = try parseAttributes(rawAttributes: rawElement)
-                    elements.insert(element)
-                } else {
-                    throw ThemifyError.invalidThemeConfiguration
-                }
+            guard let rawElementType = rawElement["element"] as? String else {
+                throw ThemifyError.invalidThemeConfiguration
+            }
+            if let element = Element(className: rawElementType) {
+                element.attributes = try parseAttributes(rawAttributes: rawElement)
+                elements.insert(element)
             } else {
                 throw ThemifyError.invalidThemeConfiguration
             }
@@ -66,7 +62,7 @@ struct Parser {
         return elements
     }
     
-    fileprivate func parseAttributes(rawAttributes: Dictionary<String, String>) throws -> Set<Attribute> {
+    fileprivate func parseAttributes(rawAttributes: Dictionary<String, Any>) throws -> Set<Attribute> {
         var attributes = Set<Attribute>()
         for (name, value) in rawAttributes {
             let attribute: Attribute! = Attribute(name: name, value: value)

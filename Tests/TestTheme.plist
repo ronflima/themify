@@ -45,6 +45,13 @@
 				<string>#26418f</string>
 				<key>tintColor</key>
 				<string>#FFFFFF</string>
+				<key>titleTextAttributes</key>
+				<dict>
+					<key>backgroundColor</key>
+					<string>#000000</string>
+					<key>foregroundColor</key>
+					<string>#FFFFFF</string>
+				</dict>
 			</dict>
 			<dict>
 				<key>element</key>

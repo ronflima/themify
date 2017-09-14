@@ -31,6 +31,7 @@ enum AttributeType {
     case color
     case image
     case container
+    case textAttribute
     case unknown
     
     init(name: String) {
@@ -41,6 +42,8 @@ enum AttributeType {
             self = .image
         } else if normalizedName == "CONTAINER" {
             self = .container
+        } else if normalizedName.contains("TEXTATTRIBUTES") {
+            self = .textAttribute
         } else {
             self = .unknown
         }
@@ -53,20 +56,36 @@ class Attribute {
     let name: String
     let type: AttributeType
     
-    init? (name: String, value: String) {
+    init? (name: String, value: Any) {
         var attrValue: Any? = nil
         self.name = name
         self.type = AttributeType(name: name)
         switch self.type {
         case .color:
-            attrValue = UIColor(hex: value, alpha: 1.0)
+            if let value = value as? String {
+                attrValue = UIColor(hex: value, alpha: 1.0)
+            }
         case .image:
-            let url = URL(fileURLWithPath: value)
-            if let data = try? Data(contentsOf: url) {
-                attrValue = UIImage(data: data)
+            if let value = value as? String {
+                let url = URL(fileURLWithPath: value)
+                if let data = try? Data(contentsOf: url) {
+                    attrValue = UIImage(data: data)
+                }
             }
         case .container:
-            attrValue = NSObject.swiftClassFromString(className: value)
+            if let value = value as? String {
+                attrValue = NSObject.swiftClassFromString(className: value)
+            }
+        case .textAttribute:
+            // TODO: Implement text attributes
+            var parsedValues: [NSAttributedStringKey:Any] = [:]
+            if let value = value as? [String:String] {
+                for (key, strAttr) in value {
+                    guard let stringKey = NSAttributedStringKey.fromString(representation: key) else {
+                        return nil
+                    }
+                }
+            }
             break
         case .unknown:
             return nil

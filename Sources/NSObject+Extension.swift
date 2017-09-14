@@ -27,7 +27,7 @@
 import Foundation
 
 /// Adds a class function to NSObject in order to get a class type for a given string representing the class name.
-/// This is based on Maxim Bilan extension, updated to Swift 3. 
+/// This is based on Maxim Bilan extension, updated to Swift 4. 
 /// - seealso: https://medium.com/@maximbilan/ios-objective-c-project-nsclassfromstring-method-for-swift-classes-dbadb721723
 extension NSObject {
     class func swiftClassFromString(className: String) -> AnyClass? {
