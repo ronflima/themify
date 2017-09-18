@@ -1,5 +1,5 @@
 # Themify
-[![Mit License][mit-badge]][mit-url]
+[![Mit License][mit-badge]][mit-url][![Build Status][travis-build-url]][travis-url]
 
 ## What is Themify?
 
@@ -102,3 +102,5 @@ This library is released under [MIT License](LICENSE).
 
 [mit-badge]: https://img.shields.io/badge/License-MIT-blue.svg?style=flat
 [mit-url]: https://tldrlegal.com/license/mit-license
+[travis-build-url]:https://travis-ci.org/nineteen-apps/themify.svg?branch=master
+[travis-url]: https://travis-ci.org/nineteen-apps/themify
