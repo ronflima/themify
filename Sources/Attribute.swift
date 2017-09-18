@@ -77,7 +77,6 @@ class Attribute {
                 attrValue = NSObject.swiftClassFromString(className: value)
             }
         case .textAttribute:
-            // TODO: Implement text attributes
             var parsedValues: [NSAttributedStringKey:Any] = [:]
             if let value = value as? [String:String] {
                 for (key, strAttr) in value {
@@ -85,7 +84,7 @@ class Attribute {
                         return nil
                     }
                     if let attribute = Attribute(name: key, value: strAttr) {
-                        parsedValues[stringKey] = attribute
+                        parsedValues[stringKey] = attribute.value
                     }
                 }
                 attrValue = parsedValues
