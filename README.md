@@ -1,5 +1,5 @@
 # Themify
-[![Mit License][mit-badge]][mit-url][![Build Status][travis-build-url]][travis-url]
+[![Mit License][mit-badge]] [mit-url][![Build Status][travis-build-url]][travis-url]
 
 ## What is Themify?
 
