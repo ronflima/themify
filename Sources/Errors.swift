@@ -23,6 +23,7 @@
 //
 // Created: 2017-04-27 by Ronaldo Faria Lima
 // This file purpose: Errors thrown by this library
+import Foundation
 
 enum ThemifyError: Error {
     case cantLoadThemeFile(themeFileURL: URL)
