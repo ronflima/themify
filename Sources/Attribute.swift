@@ -95,7 +95,9 @@ class Attribute {
         }
         var selector: Selector? = nil
         if type != .container {
-            let selName = "set\(String(name.characters.prefix(1)).capitalized)\(String(name.characters.dropFirst())):"
+            let first = name.startIndex
+            let second = name.index(after: first)
+            let selName = "set\(name.capitalized[first])\(name[second..<name.endIndex]):"
             selector = NSSelectorFromString(selName)
         }
         self.selector = selector
