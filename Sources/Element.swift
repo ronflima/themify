@@ -64,15 +64,20 @@ extension Element {
     /// Applies attributes to appearance proxies
     ///
     /// - Throws: ThemifyError.invalidProxyConfiguration
-    func applyAttributes() throws {
+    func applyAttributes(usingOldValues: Bool = false) throws {
         let proxy = element.appearance()
         for attribute in attributes {
             if attribute.type == .container {
                 // Container is not taken into account. Skip it.
                 continue
             }
-            if (element as AnyClass).instancesRespond(to: attribute.selector!) {
-                proxy.perform(attribute.selector, with: attribute.value)
+            if let getSelector = attribute.getSelector {
+                if (element as AnyClass).instancesRespond(to: getSelector) {
+                    attribute.oldValue = proxy.perform(getSelector)
+                }
+            }
+            if (element as AnyClass).instancesRespond(to: attribute.setSelector!) {
+                proxy.perform(attribute.setSelector, with: usingOldValues ? attribute.oldValue : attribute.value)
             } else {
                 throw ThemifyError.invalidProxyConfiguration(className: String(describing: element), attributeName: attribute.name)
             }

@@ -51,8 +51,10 @@ enum AttributeType {
 }
 
 class Attribute {
-    let selector: Selector?
+    let setSelector: Selector?
+    let getSelector: Selector?
     let value: Any!
+    var oldValue: Any!
     let name: String
     let type: AttributeType
     
@@ -93,14 +95,17 @@ class Attribute {
         case .unknown:
             return nil
         }
-        var selector: Selector? = nil
+        var setSelector: Selector? = nil
+        var getSelector: Selector? = nil
         if type != .container {
             let first = name.startIndex
             let second = name.index(after: first)
-            let selName = "set\(name.capitalized[first])\(name[second..<name.endIndex]):"
-            selector = NSSelectorFromString(selName)
+            let setterName = "set\(name.capitalized[first])\(name[second..<name.endIndex]):"
+            setSelector = NSSelectorFromString(setterName)
+            getSelector = NSSelectorFromString(name)
         }
-        self.selector = selector
+        self.setSelector = setSelector
+        self.getSelector = getSelector
         self.value = attrValue
     }
 }

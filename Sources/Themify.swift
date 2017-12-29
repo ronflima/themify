@@ -31,6 +31,8 @@ import Foundation
 public final class Themify {
     /// Set of loaded themes
     fileprivate var themes = Set<Theme>()
+    /// Last applied theme, if any.
+    fileprivate weak var lastAppliedTheme: Theme?
     
     /// Shared instance of Themify. You can use it as a singleton. This is only a convenience.
     public static let shared = Themify()
@@ -80,7 +82,9 @@ public final class Themify {
     /// - Throws: ThemifyError.themeNotFound if theme name was not found at all.
     public func applyTheme(themeName: String) throws {
         if let theme = (themes.filter { $0.name == themeName }).first {
+            try lastAppliedTheme?.reset()
             try theme.apply()
+            lastAppliedTheme = theme
         } else {
             throw ThemifyError.themeNotFound(themeName: themeName)
         }

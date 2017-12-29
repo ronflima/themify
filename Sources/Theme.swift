@@ -49,6 +49,13 @@ public class Theme {
         }
     }
     
+    /// Undoes theme application by returning all changed proxies to its original values.
+    public func reset() throws {
+        for element in elements {
+            try element.applyAttributes(usingOldValues: true)
+        }
+    }
+    
     /// Adds a customized element to this theme. Used internally
     ///
     /// - Parameter element: Element to add
