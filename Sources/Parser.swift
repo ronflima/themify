@@ -27,13 +27,13 @@
 import Foundation
 
 struct Parser {
-    func parse(rawThemes: Array<Any>) throws -> Set<Theme> {
+    func parse(rawThemes: [Any]) throws -> Set<Theme> {
         var themes = Set<Theme>()
         for readTheme in rawThemes {
-            if let rawTheme = readTheme as? Dictionary<String, Any> {
+            if let rawTheme = readTheme as? [String: Any] {
                 if let name = rawTheme["name"] as? String {
                     let theme = Theme(name: name)
-                    guard let rawElements = rawTheme["elements"] as? Array<Dictionary<String, Any>> else {
+                    guard let rawElements = rawTheme["elements"] as? [[String: Any]] else {
                         throw ThemifyError.invalidThemeConfiguration
                     }
                     theme.elements = try parseElements(rawElements: rawElements)
@@ -45,8 +45,8 @@ struct Parser {
         }
         return themes
     }
-    
-    fileprivate func parseElements(rawElements: Array<Dictionary<String, Any>>) throws -> Set<Element> {
+
+    fileprivate func parseElements(rawElements: [[String: Any]]) throws -> Set<Element> {
         var elements = Set<Element>()
         for rawElement in rawElements {
             guard let rawElementType = rawElement["element"] as? String else {
@@ -61,8 +61,8 @@ struct Parser {
         }
         return elements
     }
-    
-    fileprivate func parseAttributes(rawAttributes: Dictionary<String, Any>) throws -> Set<Attribute> {
+
+    fileprivate func parseAttributes(rawAttributes: [String: Any]) throws -> Set<Attribute> {
         var attributes = Set<Attribute>()
         for (name, value) in rawAttributes {
             let attribute: Attribute! = Attribute(name: name, value: value)

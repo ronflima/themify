@@ -31,4 +31,3 @@ enum ThemifyError: Error {
     case invalidThemeConfiguration
     case invalidProxyConfiguration(className: String, attributeName: String)
 }
-

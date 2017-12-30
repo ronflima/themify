@@ -31,31 +31,31 @@ import Foundation
 public class Theme {
     /// This theme name, for reference
     let name: String
-    
+
     /// Customized elements on this theme
     var elements: Set<Element>!
-    
+
     /// Initializer
     ///
     /// - Parameter name: Theme name
     public init(name: String) {
         self.name = name
     }
-    
+
     /// Applies the theme to the app by using appearance proxies.
     public func apply() throws {
         for element in elements {
             try element.applyAttributes()
         }
     }
-    
+
     /// Undoes theme application by returning all changed proxies to its original values.
     public func reset() throws {
         for element in elements {
             try element.applyAttributes(usingOldValues: true)
         }
     }
-    
+
     /// Adds a customized element to this theme. Used internally
     ///
     /// - Parameter element: Element to add
@@ -69,8 +69,8 @@ extension Theme: Hashable {
     public var hashValue: Int {
         return name.hashValue
     }
-    
-    public static func == (a: Theme, b: Theme) -> Bool {
-        return a.name == b.name
+
+    public static func == (first: Theme, second: Theme) -> Bool {
+        return first.name == second.name
     }
 }

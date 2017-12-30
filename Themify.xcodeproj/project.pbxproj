@@ -152,6 +152,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D17E67731EAF7A0D008FA5C0 /* Build configuration list for PBXNativeTarget "Themify" */;
 			buildPhases = (
+				D11959AB1FF83CB50070470D /* ShellScript */,
 				D17E67691EAF7A0D008FA5C0 /* Sources */,
 				D17E676A1EAF7A0D008FA5C0 /* Frameworks */,
 				D17E676B1EAF7A0D008FA5C0 /* Headers */,
@@ -242,6 +243,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D11959AB1FF83CB50070470D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D17E67691EAF7A0D008FA5C0 /* Sources */ = {

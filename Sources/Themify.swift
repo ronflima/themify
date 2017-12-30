@@ -33,25 +33,21 @@ public final class Themify {
     fileprivate var themes = Set<Theme>()
     /// Last applied theme, if any.
     fileprivate weak var lastAppliedTheme: Theme?
-    
     /// Shared instance of Themify. You can use it as a singleton. This is only a convenience.
     public static let shared = Themify()
-    
     /// A list with all loaded theme names
     public var themeNames: [String] {
         return themes.map({ (theme) -> String in
             return theme.name
         })
     }
-    
+
     /// Contains the number of loaded themes
     public var count: Int {
         return themes.count
     }
-    
     /// Default initializer. So far, does nothing. Module internal for singleton pattern implementation.
     init() {}
-    
     /// Loads all themes written to a plist file.
     ///
     /// - Parameter fileURL: File URL for a plist containing theme definitions
@@ -59,12 +55,12 @@ public final class Themify {
     ///     - ThemifyError.cantLoadThemeFile if could not read the input file
     ///     - ThemifyError.invalidThemeConfiguration if parsing of one theme was not successful
     public func loadThemes(from fileURL: URL) throws {
-        guard let themeArray = NSArray(contentsOf: fileURL) as? Array<Any> else {
+        guard let themeArray = NSArray(contentsOf: fileURL) as? [Any] else {
            throw ThemifyError.cantLoadThemeFile(themeFileURL: fileURL)
         }
         themes = try Parser().parse(rawThemes: themeArray)
     }
-    
+
     /// Convenience method. Loads a theme file from a given POSIX path
     ///
     /// - Parameter path: Full qualified path to themes file
@@ -75,7 +71,7 @@ public final class Themify {
         let fileURL = URL(fileURLWithPath: path)
         try loadThemes(from: fileURL)
     }
-    
+
     /// Applies a theme based on its name
     ///
     /// - Parameter themeName: Theme name to apply

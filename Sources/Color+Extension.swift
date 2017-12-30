@@ -29,7 +29,7 @@ import UIKit
 
 // MARK: - UIColor Extension
 extension UIColor {
-    
+
     /// Creates a UIColor based on a string hexadecimal RGB value.
     ///
     /// - Parameters:
@@ -43,7 +43,9 @@ extension UIColor {
         let scanner = Scanner(string: rawHex)
         var rgb: UInt64 = 0
         scanner.scanHexInt64(&rgb)
-        let hexColor = (r: CGFloat((rgb >> 0x10) & 0xff)/CGFloat(0xff), g: CGFloat((rgb >> 0x8) & 0xff)/CGFloat(0xff), b: CGFloat(rgb & 0xff)/CGFloat(0xff))
+        let hexColor = (r: CGFloat((rgb >> 0x10) & 0xff)/CGFloat(0xff),
+                        g: CGFloat((rgb >> 0x8) & 0xff)/CGFloat(0xff),
+                        b: CGFloat(rgb & 0xff)/CGFloat(0xff))
         self.init(red: hexColor.r, green: hexColor.g, blue: hexColor.b, alpha: alpha)
     }
 }

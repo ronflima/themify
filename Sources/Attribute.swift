@@ -23,6 +23,8 @@
 //
 // Created: 2017-04-25 by Ronaldo Faria Lima
 // This file purpose: Attribute declarations
+// swiftlint:disable cyclomatic_complexity
+// swiftlint:disable function_body_length
 
 import Foundation
 import UIKit
@@ -34,7 +36,7 @@ enum AttributeType {
     case textAttribute
     case font
     case unknown
-    
+
     init(name: String) {
         let normalizedName = name.uppercased()
         if normalizedName.contains("COLOR") {
@@ -60,7 +62,7 @@ class Attribute {
     var oldValue: Any!
     let name: String
     let type: AttributeType
-    
+
     init? (name: String, value: Any) {
         var attrValue: Any? = nil
         self.name = name
@@ -82,8 +84,8 @@ class Attribute {
                 attrValue = NSObject.swiftClassFromString(className: value)
             }
         case .textAttribute:
-            var parsedValues: [NSAttributedStringKey:Any] = [:]
-            if let value = value as? [String:Any] {
+            var parsedValues: [NSAttributedStringKey: Any] = [:]
+            if let value = value as? [String: Any] {
                 for (key, strAttr) in value {
                     guard let stringKey = NSAttributedStringKey.fromString(representation: key) else {
                         return nil
@@ -94,9 +96,8 @@ class Attribute {
                 }
                 attrValue = parsedValues
             }
-            break
         case .font:
-            if let fontInfo = value as? [String:Any] {
+            if let fontInfo = value as? [String: Any] {
                 let fontName = fontInfo["name"] as? String
                 let fontSize = fontInfo["size"] as? CGFloat
                 guard fontName != nil, fontSize != nil else {
@@ -106,7 +107,6 @@ class Attribute {
             } else {
                 return nil
             }
-            break
         case .unknown:
             return nil
         }
@@ -130,8 +130,8 @@ extension Attribute: Hashable {
     var hashValue: Int {
         return name.hashValue
     }
-    
-    static func == (a: Attribute, b: Attribute) -> Bool {
-        return a.hashValue == b.hashValue
+
+    static func == (first: Attribute, second: Attribute) -> Bool {
+        return first.hashValue == first.hashValue
     }
 }

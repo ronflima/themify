@@ -3,7 +3,7 @@
 //  Themify
 //
 //  Created by Ronaldo Faria Lima on 03/09/17.
-//
+// swiftlint:disable colon
 import UIKit
 import Foundation
 
@@ -31,6 +31,7 @@ extension NSAttributedStringKey {
         "VERTICALGLYPHFORM"     : .verticalGlyphForm,
         "WRITINGDIRECTION"      : .writingDirection
     ]
+
     static func fromString(representation: String) -> NSAttributedStringKey? {
         if let parts = representation.split(separator: ".").last {
             return NSAttributedStringKey.stringMap[parts.uppercased()]

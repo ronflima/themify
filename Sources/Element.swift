@@ -31,10 +31,10 @@ import UIKit
 class Element {
     /// List of attributes to be themified for this element
     var attributes: Set<Attribute>!
-    
+
     /// This element proxy
     let element: UIAppearance.Type!
-    
+
     init? (className: String) {
         element = NSObject.swiftClassFromString(className: className) as? UIAppearance.Type
         if element == nil {
@@ -48,8 +48,8 @@ extension Element: Hashable {
     var hashValue: Int {
         return element.appearance().hash
     }
-    static func == (a: Element, b: Element) -> Bool {
-        return a.element == b.element
+    static func == (first: Element, second: Element) -> Bool {
+        return first.element == second.element
     }
 }
 
@@ -57,6 +57,7 @@ extension Element: Hashable {
 extension Element {
     var proxy: UIAppearance {
         if let container = (attributes.filter { $0.type == .container }).first {
+            // swiftlint:disable:next force_cast
             return element.appearance(whenContainedInInstancesOf: [container.value as! UIAppearanceContainer.Type])
         }
         return element.appearance()
@@ -79,7 +80,8 @@ extension Element {
             if (element as AnyClass).instancesRespond(to: attribute.setSelector!) {
                 proxy.perform(attribute.setSelector, with: usingOldValues ? attribute.oldValue : attribute.value)
             } else {
-                throw ThemifyError.invalidProxyConfiguration(className: String(describing: element), attributeName: attribute.name)
+                throw ThemifyError.invalidProxyConfiguration(className: String(describing: element),
+                                                             attributeName: attribute.name)
             }
         }
     }

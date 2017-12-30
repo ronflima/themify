@@ -5,6 +5,7 @@
 //  Created by Ronaldo Faria Lima on 28/04/17.
 //
 //
+// swiftlint:disable colon
 
 import XCTest
 @testable import Themify
@@ -12,16 +13,16 @@ import XCTest
 /// Tests the main interface of Themify library
 class TestMainInterface: XCTestCase {
     var testBundle: Bundle!
-    
+
     override func setUp() {
         super.setUp()
         testBundle = Bundle(for: type(of :self))
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
-    
+
     func testThemeLoad() {
         guard let themeFileURL = testBundle.url(forResource: "TestTheme", withExtension: "plist") else {
             XCTFail("Unable to load theme test file")
@@ -34,7 +35,7 @@ class TestMainInterface: XCTestCase {
         }
         XCTAssertEqual(Themify.shared.count, 2, "Wrong number of loaded themes")
     }
-    
+
     func testThemeLoadFromPath() {
         guard let themeFilePath = testBundle.path(forResource: "TestTheme", ofType: "plist") else {
             XCTFail("Unable to load theme test file")
@@ -47,7 +48,7 @@ class TestMainInterface: XCTestCase {
         }
         XCTAssertEqual(Themify.shared.count, 2, "Wrong number of loaded themes")
     }
-    
+
     func testThemeApply() {
         guard let themeFileURL = testBundle.url(forResource: "TestTheme", withExtension: "plist") else {
             XCTFail("Unable to load theme test file")
@@ -84,7 +85,7 @@ class TestMainInterface: XCTestCase {
             XCTFail("Failed to apply theme")
         }
     }
-    
+
     func testThemeNames() {
         guard let themeFileURL = testBundle.url(forResource: "TestTheme", withExtension: "plist") else {
             XCTFail("Unable to load theme test file")
