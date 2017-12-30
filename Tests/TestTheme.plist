@@ -51,6 +51,13 @@
 					<string>#000000</string>
 					<key>foregroundColor</key>
 					<string>#FFFFFF</string>
+					<key>font</key>
+					<dict>
+						<key>name</key>
+						<string>HelveticaNeue</string>
+						<key>size</key>
+						<integer>25</integer>
+					</dict>
 				</dict>
 			</dict>
 			<dict>

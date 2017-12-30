@@ -43,6 +43,6 @@ extension NSObject {
                 foundClass = NSClassFromString("\(appName).\(className)")
             }
         }
-        return foundClass;
+        return foundClass
     }
 }

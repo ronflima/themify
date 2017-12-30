@@ -31,7 +31,7 @@ extension NSAttributedStringKey {
         "VERTICALGLYPHFORM"     : .verticalGlyphForm,
         "WRITINGDIRECTION"      : .writingDirection
     ]
-    static func fromString(representation: String) ->NSAttributedStringKey? {
+    static func fromString(representation: String) -> NSAttributedStringKey? {
         if let parts = representation.split(separator: ".").last {
             return NSAttributedStringKey.stringMap[parts.uppercased()]
         }

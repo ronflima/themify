@@ -32,6 +32,7 @@ enum AttributeType {
     case image
     case container
     case textAttribute
+    case font
     case unknown
     
     init(name: String) {
@@ -44,6 +45,8 @@ enum AttributeType {
             self = .container
         } else if normalizedName.contains("TEXTATTRIBUTES") {
             self = .textAttribute
+        } else if normalizedName.contains("FONT") {
+            self = .font
         } else {
             self = .unknown
         }
@@ -80,7 +83,7 @@ class Attribute {
             }
         case .textAttribute:
             var parsedValues: [NSAttributedStringKey:Any] = [:]
-            if let value = value as? [String:String] {
+            if let value = value as? [String:Any] {
                 for (key, strAttr) in value {
                     guard let stringKey = NSAttributedStringKey.fromString(representation: key) else {
                         return nil
@@ -90,6 +93,18 @@ class Attribute {
                     }
                 }
                 attrValue = parsedValues
+            }
+            break
+        case .font:
+            if let fontInfo = value as? [String:Any] {
+                let fontName = fontInfo["name"] as? String
+                let fontSize = fontInfo["size"] as? CGFloat
+                guard fontName != nil, fontSize != nil else {
+                    return nil
+                }
+                attrValue = UIFont(name: fontName!, size: fontSize!)
+            } else {
+                return nil
             }
             break
         case .unknown:
