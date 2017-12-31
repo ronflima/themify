@@ -5,7 +5,6 @@
 //  Created by Ronaldo Faria Lima on 28/04/17.
 //
 //
-// swiftlint:disable colon
 
 import XCTest
 @testable import Themify
@@ -16,7 +15,7 @@ class TestMainInterface: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        testBundle = Bundle(for: type(of :self))
+        testBundle = Bundle(for: type(of: self))
     }
 
     override func tearDown() {
