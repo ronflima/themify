@@ -70,7 +70,7 @@ class Attribute {
         switch self.type {
         case .color:
             if let value = value as? String {
-                attrValue = UIColor(hex: value, alpha: 1.0)
+                attrValue = UIColor(hex: value)
             }
         case .image:
             if let value = value as? String {
