@@ -104,6 +104,10 @@ extension UIColor {
             components.blue = CGFloat(rgba & 0xf0 | (rgba & 0xf0) >> 0x4)
             components.alpha = CGFloat(rgba & 0xf | (rgba & 0xf) << 0x4)
         }
+        components.red /= CGFloat(0xff)
+        components.green /= CGFloat(0xff)
+        components.blue /= CGFloat(0xff)
+        components.alpha /= CGFloat(0xff)
         return components
     }
 }

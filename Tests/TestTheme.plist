@@ -76,6 +76,14 @@
 				<key>tintColor</key>
 				<string>#ffffff</string>
 			</dict>
+			<dict>
+				<key>element</key>
+				<string>UILabel</string>
+				<key>backgroundColor</key>
+				<string>#abc</string>
+				<key>color</key>
+				<string>#abcd</string>
+			</dict>
 		</array>
 	</dict>
 </array>
