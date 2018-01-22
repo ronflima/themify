@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Themify"
-  s.version      = "1.0.11"
+  s.version      = "1.0.12"
   s.summary      = "A theme engine for iOS"
 
   # This description is used to generate tags and improve search results.
