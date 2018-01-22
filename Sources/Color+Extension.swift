@@ -71,7 +71,7 @@ extension UIColor {
     ///     - A tuple of color components on success
     ///     - nil if provided hex string is invalid
     fileprivate static func colorComponents(from hexString: String) -> ColorComponents? {
-        var components = ColorComponents(0, 0, 0, 1.0)
+        var components = ColorComponents(0, 0, 0, CGFloat(0xff))
         var rawHex = hexString
         if let i = hexString.index(of: "#") {
             rawHex = String(hexString[hexString.index(i, offsetBy: 1)..<hexString.endIndex])
