@@ -45,6 +45,8 @@
 				<string>#26418f</string>
 				<key>tintColor</key>
 				<string>#FFFFFF</string>
+				<key>barTintColor</key>
+				<string>#ADFF</string>
 				<key>titleTextAttributes</key>
 				<dict>
 					<key>backgroundColor</key>

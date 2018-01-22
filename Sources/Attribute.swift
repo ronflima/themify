@@ -132,6 +132,6 @@ extension Attribute: Hashable {
     }
 
     static func == (first: Attribute, second: Attribute) -> Bool {
-        return first.hashValue == first.hashValue
+        return first.hashValue == second.hashValue
     }
 }
