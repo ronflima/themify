@@ -76,7 +76,7 @@ extension UIColor {
         if let i = hexString.index(of: "#") {
             rawHex = String(hexString[hexString.index(i, offsetBy: 1)..<hexString.endIndex])
         }
-        let colorType = ColorType(rawValue: hexString.count)
+        let colorType = ColorType(rawValue: rawHex.count)
         if colorType == nil {
             // Invalid hex value provided
             return nil
