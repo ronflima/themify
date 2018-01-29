@@ -10,26 +10,35 @@
 			<dict>
 				<key>element</key>
 				<string>UINavigationBar</string>
-				<key>backgroundColor</key>
-				<string>#000051</string>
-				<key>tintColor</key>
-				<string>#FFFFFF</string>
+				<key>attributes</key>
+				<dict>
+					<key>backgroundColor</key>
+					<string>#000051</string>
+					<key>tintColor</key>
+					<string>#FFFFFF</string>
+				</dict>
 			</dict>
 			<dict>
 				<key>element</key>
 				<string>UILabel</string>
-				<key>container</key>
-				<string>UINavigationBar</string>
-				<key>tintColor</key>
-				<string>#FFFFFF</string>
+				<key>attributes</key>
+				<dict>
+					<key>container</key>
+					<string>UINavigationBar</string>
+					<key>tintColor</key>
+					<string>#FFFFFF</string>
+				</dict>
 			</dict>
 			<dict>
 				<key>element</key>
 				<string>UITabBar</string>
-				<key>backgroundColor</key>
-				<string>#534bae</string>
-				<key>tintColor</key>
-				<string>#ffffff</string>
+				<key>attributes</key>
+				<dict>
+					<key>backgroundColor</key>
+					<string>#534bae</string>
+					<key>tintColor</key>
+					<string>#ffffff</string>
+				</dict>
 			</dict>
 		</array>
 	</dict>
@@ -41,50 +50,62 @@
 			<dict>
 				<key>element</key>
 				<string>UINavigationBar</string>
-				<key>backgroundColor</key>
-				<string>#26418f</string>
-				<key>tintColor</key>
-				<string>#FFFFFF</string>
-				<key>barTintColor</key>
-				<string>#ADFF</string>
-				<key>titleTextAttributes</key>
+				<key>attributes</key>
 				<dict>
 					<key>backgroundColor</key>
-					<string>#000000</string>
-					<key>foregroundColor</key>
+					<string>#26418f</string>
+					<key>tintColor</key>
 					<string>#FFFFFF</string>
-					<key>font</key>
+					<key>barTintColor</key>
+					<string>#ADFF</string>
+					<key>titleTextAttributes</key>
 					<dict>
-						<key>name</key>
-						<string>HelveticaNeue</string>
-						<key>size</key>
-						<integer>25</integer>
+						<key>backgroundColor</key>
+						<string>#000000</string>
+						<key>foregroundColor</key>
+						<string>#FFFFFF</string>
+						<key>font</key>
+						<dict>
+							<key>name</key>
+							<string>HelveticaNeue</string>
+							<key>size</key>
+							<integer>25</integer>
+						</dict>
 					</dict>
 				</dict>
 			</dict>
 			<dict>
 				<key>element</key>
 				<string>UILabel</string>
-				<key>container</key>
-				<string>UINavigationBar</string>
-				<key>color</key>
-				<string>#FFFFFF</string>
+				<key>attributes</key>
+				<dict>
+					<key>container</key>
+					<string>UINavigationBar</string>
+					<key>color</key>
+					<string>#FFFFFF</string>
+				</dict>
 			</dict>
 			<dict>
 				<key>element</key>
 				<string>UITabBar</string>
-				<key>backgroundColor</key>
-				<string>#8e99f3</string>
-				<key>tintColor</key>
-				<string>#ffffff</string>
+				<key>attributes</key>
+				<dict>
+					<key>backgroundColor</key>
+					<string>#8e99f3</string>
+					<key>tintColor</key>
+					<string>#ffffff</string>
+				</dict>
 			</dict>
 			<dict>
 				<key>element</key>
 				<string>UILabel</string>
-				<key>backgroundColor</key>
-				<string>#abc</string>
-				<key>color</key>
-				<string>#abcd</string>
+				<key>attributes</key>
+				<dict>
+					<key>backgroundColor</key>
+					<string>#abc</string>
+					<key>color</key>
+					<string>#abcd</string>
+				</dict>
 			</dict>
 		</array>
 	</dict>

@@ -43,7 +43,9 @@ The theme file is a simple plist. However, this plist must have the following fo
     - elements: Array (element definitions)
       - Dictionary (element definition)
         - element: String - Name of the element (i.e., _UILabel_)
-        - attribute: String - Attribute to customize. (the key is the attribute, and the value, what is being customized
+        - attributes: Dictionary -list of attributes to customize.
+            - key: Attribute name to customize. Use a property name like _tintColor_ .
+            - value: Value of the attribute.
 
 See the file _TestTheme.plist_ for a practical example.
 
@@ -56,27 +58,48 @@ file. Here is a plist example:
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<array>
-	<dict>
-		<key>name</key>
-		<string>Default</string>
-		<key>elements</key>
-		<array>
-			<dict>
-				<key>element</key>
-				<string>UITabBar</string>
-				<key>tintColor</key>
-				<string>#FF8000</string>
-			</dict>
-			<dict>
-				<key>element</key>
-				<string>UINavigationBar</string>
-				<key>tintColor</key>
-				<string>#FF8000</string>
-			</dict>
-		</array>
-	</dict>
-</array>
+    <array>
+        <dict>
+            <key>name</key>
+            <string>Twilight</string>
+            <key>elements</key>
+            <array>
+                <dict>
+                    <key>element</key>
+                    <string>UINavigationBar</string>
+                    <key>attributes</key>
+                    <dict>
+                        <key>backgroundColor</key>
+                        <string>#000051</string>
+                        <key>tintColor</key>
+                        <string>#FFFFFF</string>
+                    </dict>
+                </dict>
+                <dict>
+                    <key>element</key>
+                    <string>UILabel</string>
+                    <key>attributes</key>
+                    <dict>
+                        <key>container</key>
+                        <string>UINavigationBar</string>
+                        <key>tintColor</key>
+                        <string>#FFFFFF</string>
+                    </dict>
+                </dict>
+                <dict>
+                    <key>element</key>
+                    <string>UITabBar</string>
+                    <key>attributes</key>
+                    <dict>
+                        <key>backgroundColor</key>
+                        <string>#534bae</string>
+                        <key>tintColor</key>
+                        <string>#ffffff</string>
+                    </dict>
+                </dict>
+            </array>
+        </dict>
+    </array>
 </plist>
 ```
 

@@ -53,7 +53,9 @@ struct Parser {
                 throw ThemifyError.invalidThemeConfiguration
             }
             if let element = Element(className: rawElementType) {
-                element.attributes = try parseAttributes(rawAttributes: rawElement)
+                if let attributes = rawElement["attributes"] as? [String: Any] {
+                    element.attributes = try parseAttributes(rawAttributes: attributes)
+                }
                 elements.insert(element)
             } else {
                 throw ThemifyError.invalidThemeConfiguration

@@ -33,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D107B128201F49D80064ADDC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D11607221EB0289500881A89 /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
 		D17346031EB2970800E92F80 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		D177FA0D1EE23221000205AF /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		"___RootGroup_" = {
 			isa = PBXGroup;
 			children = (
+				D107B128201F49D80064ADDC /* README.md */,
 				D17E67711EAF7A0D008FA5C0 /* Info.plist */,
 				"_____Sources_" /* Sources */,
 				"_______Tests_" /* Tests */,

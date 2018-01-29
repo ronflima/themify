@@ -46,8 +46,10 @@ public final class Themify {
     public var count: Int {
         return themes.count
     }
-    /// Default initializer. So far, does nothing. Module internal for singleton pattern implementation.
+
+    /// Default initializer. So far, does nothing.
     init() {}
+
     /// Loads all themes written to a plist file.
     ///
     /// - Parameter fileURL: File URL for a plist containing theme definitions
