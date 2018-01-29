@@ -108,6 +108,18 @@
 				</dict>
 			</dict>
 		</array>
+		<key>styleSets</key>
+		<array>
+			<dict>
+				<key>element</key>
+				<string>profileLabel</string>
+				<key>attributes</key>
+				<dict>
+					<key>textColor</key>
+					<string>#ffffff</string>
+				</dict>
+			</dict>
+		</array>
 	</dict>
 </array>
 </plist>

@@ -29,6 +29,10 @@ import Foundation
 /// Themify main interface. This library is implemented as a façade and singleton. But, you can create you own instance 
 /// and spread it through your code as a simple plain swift class.
 public final class Themify {
+    /// Current applied theme. In order to use this, you must call applyTheme. Otherwise, it will be always nil.
+    var current: Theme? {
+        return lastAppliedTheme
+    }
     /// Set of loaded themes
     fileprivate var themes = Set<Theme>()
     /// Last applied theme, if any.

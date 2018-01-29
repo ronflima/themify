@@ -35,8 +35,10 @@ public class Theme {
     /// Customized elements on this theme
     var elements: Set<Element>!
 
+    /// Style sets
+    var styleSets: Set<StyleSet>!
+
     /// Initializer
-    ///
     /// - Parameter name: Theme name
     public init(name: String) {
         self.name = name
@@ -57,7 +59,6 @@ public class Theme {
     }
 
     /// Adds a customized element to this theme. Used internally
-    ///
     /// - Parameter element: Element to add
     func addElement(element: Element) {
         elements.insert(element)
@@ -72,5 +73,13 @@ extension Theme: Hashable {
 
     public static func == (first: Theme, second: Theme) -> Bool {
         return first.name == second.name
+    }
+}
+
+// MARK: - Subscript for style set search
+extension Theme {
+    public subscript (context: String) -> StyleSet? {
+        let foundStyleset = styleSets.filter { $0.context == context }
+        return foundStyleset.first
     }
 }

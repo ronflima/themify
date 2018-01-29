@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D107B12B201F76C30064ADDC /* StyleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107B12A201F76C30064ADDC /* StyleSet.swift */; };
 		D11607231EB0289500881A89 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11607221EB0289500881A89 /* Attribute.swift */; };
 		D17346041EB2970800E92F80 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17346031EB2970800E92F80 /* Parser.swift */; };
 		D177FA0E1EE23221000205AF /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D177FA0D1EE23221000205AF /* NSObject+Extension.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		D107B128201F49D80064ADDC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D107B12A201F76C30064ADDC /* StyleSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSet.swift; sourceTree = "<group>"; };
 		D11607221EB0289500881A89 /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
 		D17346031EB2970800E92F80 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		D177FA0D1EE23221000205AF /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				D1CEDDCC1EB3DBAC00D5AF34 /* Color+Extension.swift */,
 				D177FA0D1EE23221000205AF /* NSObject+Extension.swift */,
 				D19303E11F5C4704001D557F /* NSAttributedStringKey+Extension.swift */,
+				D107B12A201F76C30064ADDC /* StyleSet.swift */,
 			);
 			name = Themify;
 			path = Sources;
@@ -275,6 +278,7 @@
 				D177FA0E1EE23221000205AF /* NSObject+Extension.swift in Sources */,
 				D11607231EB0289500881A89 /* Attribute.swift in Sources */,
 				D1B5A13C1EB231CA00831CB5 /* Errors.swift in Sources */,
+				D107B12B201F76C30064ADDC /* StyleSet.swift in Sources */,
 				D17E67771EAF7A95008FA5C0 /* Theme.swift in Sources */,
 				D17346041EB2970800E92F80 /* Parser.swift in Sources */,
 			);

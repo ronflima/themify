@@ -33,10 +33,12 @@ struct Parser {
             if let rawTheme = readTheme as? [String: Any] {
                 if let name = rawTheme["name"] as? String {
                     let theme = Theme(name: name)
-                    guard let rawElements = rawTheme["elements"] as? [[String: Any]] else {
-                        throw ThemifyError.invalidThemeConfiguration
+                    if let rawElements = rawTheme["elements"] as? [[String: Any]] {
+                        theme.elements = try parseElements(rawElements: rawElements)
                     }
-                    theme.elements = try parseElements(rawElements: rawElements)
+                    if let rawStyleSets = rawTheme["styleSets"] as? [[String: Any]] {
+                        theme.styleSets = try parseStyleSets(rawStyleSets: rawStyleSets)
+                    }
                     themes.insert(theme)
                 } else {
                     throw ThemifyError.invalidThemeConfiguration
@@ -62,6 +64,21 @@ struct Parser {
             }
         }
         return elements
+    }
+
+    fileprivate func parseStyleSets(rawStyleSets: [[String: Any]]) throws -> Set<StyleSet> {
+        var styleSets = Set<StyleSet>()
+        for rawElement in rawStyleSets {
+            guard let styleSetContext = rawElement["element"] as? String else {
+                throw ThemifyError.invalidThemeConfiguration
+            }
+            let styleSet = StyleSet(element: styleSetContext)
+            if let attributes = rawElement["attributes"] as? [String: Any] {
+                styleSet.attributes = try parseAttributes(rawAttributes: attributes)
+            }
+            styleSets.insert(styleSet)
+        }
+        return styleSets
     }
 
     fileprivate func parseAttributes(rawAttributes: [String: Any]) throws -> Set<Attribute> {
